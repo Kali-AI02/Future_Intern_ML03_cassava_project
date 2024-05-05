@@ -51,13 +51,13 @@ if __name__ == '__main__':
 
 
 import streamlit as st
-import cv2
+import cv
 import tensorflow as tf
 import numpy as np
 
 # Define function to preprocess image
 def preprocess_image(image):
-    image = cv2.resize(image, (128, 128))
+    image = cv.resize(image, (128, 128))
     image = image / 255.0 
     return image
 
@@ -94,7 +94,7 @@ def main():
     if uploaded_file is not None:
         try:
             # Read the image
-            image = cv2.imdecode(np.frombuffer(uploaded_file.read(), np.uint8), cv2.IMREAD_COLOR)
+            image = cv.imdecode(np.frombuffer(uploaded_file.read(), np.uint8), cv.IMREAD_COLOR)
 
             # Display the uploaded image
             st.image(image, caption='Uploaded Image', use_column_width=True)
