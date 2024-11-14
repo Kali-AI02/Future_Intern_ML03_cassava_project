@@ -51,7 +51,8 @@ if __name__ == '__main__':
 
 
 import streamlit as st
-import cv
+import cv2
+
 import tensorflow as tf
 import numpy as np
 
