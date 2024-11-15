@@ -26,7 +26,7 @@ The Crop Disease Detection model is based on research and development in the fie
 Python: 3.x
 Libraries:
 TensorFlow 
-OpenCV
+opencv-python
 NumPy
 Matplotlib
 scikit-learn
