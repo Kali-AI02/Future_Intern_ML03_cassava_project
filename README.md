@@ -8,7 +8,7 @@ To get started with this project, follow these steps:
 
 ### 1. Clone the Repository
 bash
-git clone https://github.com/yourusername/cassava-disease-detection.git
+git clone https://github.com/Kali-AI02/Future_Intern_ML03_cassava_project.git
 cd cassava-disease-detection
 
 
