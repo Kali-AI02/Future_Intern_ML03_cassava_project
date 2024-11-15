@@ -2,9 +2,14 @@ Crop Disease Detection is a web application developed to identify and classify d
 
 #Features Image Upload: Users can upload images of crops to the web application for disease detection. Disease Classification: The application uses a pre-trained CNN model to classify the uploaded image and identify whether the crop is affected by a disease. User-Friendly Interface: The Streamlit interface is designed to be simple and intuitive, allowing users to easily interact with the application. Getting Started
 
-Follow these instructions to set up and run the Crop Disease Detection web application on your local machine.
+## Setup
 
-#Prerequisites Python 3.x Streamlit TensorFlow OpenCV NumPy
+To get started with this project, follow these steps:
+
+### 1. Clone the Repository
+bash
+git clone https://github.com/yourusername/cassava-disease-detection.git
+cd cassava-disease-detection
 
 
 Open your web browser and navigate to
@@ -16,3 +21,21 @@ to access the Crop Disease Detection application. Usage Access the application t
 Acknowledgments
 
 The Crop Disease Detection model is based on research and development in the field of computer vision and deep learning. Special thanks to the open-source community for providing valuable resources and tools.
+
+# Installation
+Python: 3.x
+Libraries:
+TensorFlow 
+OpenCV
+NumPy
+Matplotlib
+scikit-learn
+Streamlit (for web app)
+
+## Dataset
+The dataset used in this project is from Kaggle. It consists of images of cassava leaves labeled into different disease categories, such as:
+
+Healthy
+Cassava Mosaic Disease
+Cassava Brown Streak Disease
+The dataset is split into training and testing sets for model evaluation.
