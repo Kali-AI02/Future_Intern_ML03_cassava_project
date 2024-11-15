@@ -6,9 +6,6 @@ Follow these instructions to set up and run the Crop Disease Detection web appli
 
 #Prerequisites Python 3.x Streamlit TensorFlow OpenCV NumPy
 
-#Install the required Python packages using the following command:
-
-bash Copy code pip install -r requirements.txt Running the Application Clone the repository to your local machine: bash Copy code git clone https://github.com/Iradukunda7192/cassava_project.git cd crop-disease-detection Run the Streamlit application: bash Copy code myenv\Scripts\activate streamlit run app.py
 
 Open your web browser and navigate to
 
