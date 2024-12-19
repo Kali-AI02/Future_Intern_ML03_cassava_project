@@ -1,8 +1,12 @@
 import streamlit as st
 from about_us import display_about_us
 from prediction import display_prediction
+import openai
 
-# Set the page configuration (only call it once)
+
+
+
+
 st.set_page_config(
     page_title="Cassava Disease Detection",
     page_icon="🌱",
