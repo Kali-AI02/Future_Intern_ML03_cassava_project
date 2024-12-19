@@ -1,122 +1,78 @@
-
-import streamlit as st 
-import pandas as pd
 import streamlit as st
-import time
-import numpy as np
-import pandas as pd
-from PIL import Image 
+from about_us import display_about_us
+from prediction import display_prediction
 
-st.title('Crop Image Detection Demo :blue[cassava] :sunglasses:')
-
-    
-import streamlit as st
-
-# Using object notation
-add_selectbox = st.sidebar.selectbox(
-    "How would you like to be contacted?",
-    ("Email", "Home phone", "Mobile phone")
+# Set the page configuration (only call it once)
+st.set_page_config(
+    page_title="Cassava Disease Detection",
+    page_icon="🌱",
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 
+# Add custom styles (for example, text color for markdown)
+st.markdown(
+    """
+    <style>
+    .stMarkdown {
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
+# Disease information and actions for affected diseases
+disease_info = {
+    "Cassava Mosaic Disease": {
+        "description": "Caused by cassava mosaic virus (CMV), this disease leads to stunted growth and distorted leaves, reducing cassava yield.",
+        "action": "To manage this disease, remove infected plants, use resistant cassava varieties, and apply appropriate pesticides if necessary."
+    },
+    "Cassava Brown Streak Disease": {
+        "description": "Caused by cassava brown streak virus (CBSV), this disease primarily affects the roots, causing discoloration and making them inedible.",
+        "action": "Remove affected plants immediately, practice crop rotation, and use virus-resistant varieties."
+    },
+    "Cassava Bacterial Blight": {
+        "description": "Caused by the Xanthomonas axonopodis bacteria, this disease results in leaf wilting, defoliation, and stem dieback.",
+        "action": "Prune affected branches, avoid over-watering, and apply copper-based bactericides."
+    },
+    "Healthy": {
+        "description": "The cassava plant shows no signs of disease and is in optimal health.",
+        "action": "Continue to care for the plant by maintaining proper watering, fertilization, and pest control."
+    }
+}
 
-import streamlit as st
+# Sidebar Disease Info Dropdown
+st.sidebar.title("Learn About Diseases")
+selected_disease = st.sidebar.selectbox("Select a Disease", list(disease_info.keys()))
+st.sidebar.write(f"**Description:** {disease_info[selected_disease]['description']}")
+st.sidebar.write(f"**What to Do:** {disease_info[selected_disease]['action']}")
 
-# Function to display content for Link 1
-def display_link1_content():
-    st.write("hello.")
+# Sidebar navigation
+page = st.sidebar.radio("Navigate", ["Home", "Prediction", "About Us", "Help"])
 
-# Function to display content for Link 2
-def display_link2_content():
-    st.write("world.")
-
-# Main function to create the Streamlit app
-def main():
-    # Add clickable links to the sidebar
-    st.sidebar.write('### Links')
-    link1_clicked = st.sidebar.button('home')
-    link2_clicked = st.sidebar.button('contact')
-
-    # Display content based on which link is clicked
-    if link1_clicked:
-        display_link1_content()
-    elif link2_clicked:
-        display_link2_content()
-
-# Call the main function to run the Streamlit app
-if __name__ == '__main__':
-    main()
-
-      
-
-
-import streamlit as st
-import cv2
-
-import tensorflow as tf
-import numpy as np
-
-# Define function to preprocess image
-def preprocess_image(image):
-    image = cv.resize(image, (128, 128))
-    image = image / 255.0 
-    return image
-
-# Define function to load and make predictions with the model
-def predict(image):
-    try:
-        # Load the Keras model
-        model = tf.keras.models.load_model('temp_model.h5')
-        
-        # Preprocess the image
-        preprocessed_image = preprocess_image(image)
-
-        # Make prediction
-        input_image_reshaped = np.reshape(preprocessed_image, [1, 128, 128, 3])
-        prediction = model.predict(input_image_reshaped)
-        result = np.argmax(prediction)
-
-        if result == 1:
-            prediction_label = 'Affected'
-        else:
-            prediction_label = 'Not Affected'
-        
-        return prediction_label
-
-    except Exception as e:
-        return str(e)
-
-# Define main function to create Streamlit app
-def main():
-    st.title('Crop Disease Detection')
-
-    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-
-    if uploaded_file is not None:
-        try:
-            # Read the image
-            image = cv.imdecode(np.frombuffer(uploaded_file.read(), np.uint8), cv.IMREAD_COLOR)
-
-            # Display the uploaded image
-            st.image(image, caption='Uploaded Image', use_column_width=True)
-
-            # Make prediction
-            prediction = predict(image)
-
-            # Display the prediction result
-            st.write(f'Prediction: {prediction}')
-
-        except Exception as e:
-            # Display any exception that occurs during image processing
-            st.error(f"Error: {str(e)}")
-
-# Call the main function to run the Streamlit app
-if __name__ == '__main__':
-    main()
+# Home Page
+if page == "Home":
+    st.title('Cassava Disease Detection Demo 🌱')
+    st.write("Welcome to the Cassava Disease Detection app!")
+    st.write("Learn about common diseases affecting cassava crops:")
     
-    
-    
+    for disease, details in disease_info.items():
+        st.markdown(f"### {disease}")
+        st.write(details["description"])
+        st.write(f"**What to do:** {details['action']}")
+
+# Prediction Page
+elif page == "Prediction":
+    display_prediction()
+
+# About Us Page
+elif page == "About Us":
+    display_about_us()
+
+# Help Section
+elif page == "Help":
+    st.title("Help Section")
+    st.write("Upload an image to detect crop diseases. Contact us for more assistance.")
 
 
-
-# Add HTML for the horizontal bar at the bottom
